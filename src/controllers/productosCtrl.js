@@ -27,11 +27,16 @@ const getproducto = async (req, res) => {
 //TODO : Crear Usuario
 const createProduct = async (req, res) => {
   try {
+    const tiempoTranscurrido = Date.now();
+    const hoy = new Date(tiempoTranscurrido);
     let data = {
       product_id: req.body.product_id,
       product_name: req.body.product_name,
+      product_desc: req.body.product_desc,
       product_price: req.body.product_price,
+      product_category: req.body.product_category,
       product_stock: req.body.product_stock,
+      product_date: hoy.toLocaleDateString(),
     };
     let sql = 'INSERT INTO productos SET ?';
     conexion.query(sql, data);
@@ -44,10 +49,12 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     let sql =
-      'UPDATE productos SET product_name=?, product_price=?, product_stock=? WHERE product_id=?';
+      'UPDATE productos SET product_name=?, product_desc=?, product_price=?, product_category=?, product_stock=? WHERE product_id=?';
     conexion.query(sql, [
       req.body.product_name,
+      req.body.product_desc,
       req.body.product_price,
+      req.body.product_category,
       req.body.product_stock,
       req.params.id,
     ]);
