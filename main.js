@@ -9,7 +9,10 @@ const port = process.env.PORT || 3000;
 //TODO : ---middlewares---
 app.use(cors());
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:7858');
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://back-sancristobal-production.up.railway.app'
+  );
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
