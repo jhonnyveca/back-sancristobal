@@ -7,23 +7,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 //TODO : ---middlewares---
-app.use(cors());
-app.use(function (req, res, next) {
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'https://back-sancristobal-production.up.railway.app'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  );
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.json());
 //TODO: ---Rutas---
 app.use('/api/v1', require('./src/routes'));
